@@ -18,6 +18,6 @@ provider:
 
 functions:
   billing-notify-batch :
-    handler: handler.rb
+    handler: handler.lambda_handler
     events:
       - schedule: cron(0 12 * * ? *)
