@@ -1,0 +1,62 @@
+service: batch
+
+frameworkVersion: '3'
+configValidationMode: warn
+useDotenv: true
+
+provider:
+  name: aws
+  stage: prod
+  region: ap-northeast-1
+  profile: default
+  logRetentionInDays: 1
+  versionFunctions: false
+  architecture: x86_64
+
+functions:
+  aws-billing:
+    handler: handler.lambda_handler
+    runtime: ruby2.7
+    timeout: 60
+    memorySize: 128
+    environment:
+      NOTIFY_TITLE: ${param:title}
+    events:
+      - schedule: cron(0 1 * * ? *)
+    role: !GetAtt ExecLambdaRole.Arn
+
+resources:
+  Resources:
+    ExecLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        Path: /
+        Description: ExecLambdaRole
+        Policies:
+          - PolicyName: AWSLambdaBasicExecutionRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "logs:CreateLogGroup"
+                    - "logs:CreateLogStream"
+                    - "logs:PutLogEvents"
+                  Resource: "arn:aws:logs:*"
+          - PolicyName: CostExplorerReadOnly
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "ce:GetCostAndUsage"
+                  Resource: "arn:aws:ce:*"
