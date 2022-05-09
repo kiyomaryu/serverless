@@ -19,8 +19,6 @@ functions:
     runtime: ruby2.7
     timeout: 60
     memorySize: 128
-    environment:
-      NOTIFY_TITLE: ${param:title}
     events:
       - schedule: cron(0 1 * * ? *)
     role: !GetAtt ExecLambdaRole.Arn
