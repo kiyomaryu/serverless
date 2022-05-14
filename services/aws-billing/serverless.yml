@@ -58,3 +58,16 @@ resources:
                   Action:
                     - "ce:GetCostAndUsage"
                   Resource: "arn:aws:ce:*"
+          - PolicyName: SecretsManagerReadOnly
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "ce:GetCostAndUsage"
+                    - "secretsmanager:GetRandomPassword"
+                    - "secretsmanager:GetResourcePolicy"
+                    - "secretsmanager:GetSecretValue"
+                    - "secretsmanager:DescribeSecret"
+                    - "secretsmanager:ListSecretVersionIds"
+                  Resource: "arn:aws:secretsmanager:*"
