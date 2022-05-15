@@ -15,13 +15,6 @@ provider:
   logRetentionInDays: 1
   versionFunctions: false
   architecture: x86_64
-  tracing: true
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - xray:PutTraceSegments
-        - xray:PutTelemetryRecords
-      Resource: "*"
 
 functions:
   aws-billing:
@@ -32,6 +25,7 @@ functions:
     events:
       - schedule: cron(0 1 * * ? *)
     role: !GetAtt ExecLambdaRole.Arn
+    tracing: true
 
 resources:
   Resources:
@@ -74,10 +68,18 @@ resources:
               Statement:
                 - Effect: "Allow"
                   Action:
-                    - "ce:GetCostAndUsage"
                     - "secretsmanager:GetRandomPassword"
                     - "secretsmanager:GetResourcePolicy"
                     - "secretsmanager:GetSecretValue"
                     - "secretsmanager:DescribeSecret"
                     - "secretsmanager:ListSecretVersionIds"
                   Resource: "arn:aws:secretsmanager:*"
+          - PolicyName: AWSLambdaTracerAccessExecuteRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "xray:PutTraceSegments"
+                    - "xray:PutTelemetryRecords"
+                  Resource: "*"
