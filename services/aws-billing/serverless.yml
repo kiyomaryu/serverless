@@ -4,6 +4,9 @@ frameworkVersion: '3'
 configValidationMode: warn
 useDotenv: true
 
+plugins:
+  - serverless-plugin-tracing
+
 provider:
   name: aws
   stage: prod
@@ -12,6 +15,13 @@ provider:
   logRetentionInDays: 1
   versionFunctions: false
   architecture: x86_64
+  tracing: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - xray:PutTraceSegments
+        - xray:PutTelemetryRecords
+      Resource: "*"
 
 functions:
   aws-billing:
