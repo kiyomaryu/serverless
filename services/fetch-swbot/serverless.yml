@@ -1,0 +1,88 @@
+service: fetch-swbot
+
+frameworkVersion: '3'
+configValidationMode: warn
+useDotenv: true
+
+provider:
+  name: aws
+  stage: prod
+  region: ap-northeast-1
+  profile: default
+  logRetentionInDays: 1
+  versionFunctions: false
+  architecture: x86_64
+
+plugins:
+  - serverless-python-requirements
+  - serverless-api-gateway-throttling
+
+custom:
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 1
+    maxConcurrentRequests: 2
+
+functions:
+  power-consumption:
+    handler: handler.lambda_handler
+    runtime: python3.9
+    timeout: 15 
+    memorySize: 128
+    environment:
+      API_KEY: ${param:api_key}
+      DEVICE_ID: ${param:device_id}
+    role: !GetAtt ExecLambdaRole.Arn
+    events:
+      - httpApi:
+          path: /pwcon
+          method: get
+    tracing: true
+
+resources:
+  Resources:
+    ExecLambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service:
+                  - "lambda.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        Path: /
+        Description: ExecLambdaRole
+        Policies:
+          - PolicyName: AWSLambdaBasicExecutionRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "logs:CreateLogGroup"
+                    - "logs:CreateLogStream"
+                    - "logs:PutLogEvents"
+                  Resource: "arn:aws:logs:*"
+          - PolicyName: SecretsManagerReadOnly
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "secretsmanager:GetRandomPassword"
+                    - "secretsmanager:GetResourcePolicy"
+                    - "secretsmanager:GetSecretValue"
+                    - "secretsmanager:DescribeSecret"
+                    - "secretsmanager:ListSecretVersionIds"
+                  Resource: "arn:aws:secretsmanager:*"
+          - PolicyName: AWSLambdaTracerAccessExecuteRole
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "xray:PutTraceSegments"
+                    - "xray:PutTelemetryRecords"
+                  Resource: "*"
