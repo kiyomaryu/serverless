@@ -26,9 +26,10 @@ discodeにてwebhookURLを入手する。
 
 discodeで入手した投稿に必要な情報をAWS SecretManagerに登録する
 
-キー名:secret_name
+種類:その他
+キー名:DISCORD_WEBHOOK
 値:前の手順で入手したURL
-名前:secret_name
+名前:discord/prod
 
 以下のコマンドを入力して構築する。
 
@@ -42,6 +43,13 @@ serverless deploy
 毎日10:00にdiscodeにて特定のチャンネルに、AWS利用料が通知されていることを確認する。
 
 ## 通知時刻変更方法
+
+LambdaからCloudWatchイベントを開き、スケジュールがUTC1:00(JPT10:00)となっているのを
+適当な時刻に修正する。
+
+## 任意のタイミングで通知する方法
+
+Lambdaを開き、batch-prod-aws-billing関数のテスト実行を行う。
 
 ## 削除方法
 
