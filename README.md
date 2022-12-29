@@ -13,12 +13,12 @@ aws(aws configureによる設定済であること。)
 
 discodeにてチャンネル書き込みのためのアクセスキーを発行していること。
 
-参考URL:
+## 参考URL
 
 (AWS CLIを利用するため必要な初期設定について)[https://dev.classmethod.jp/articles/aws-cli_initial_setting/]
 (Serverless Framework のインストールから AWS へのデプロイまで)[https://zenn.dev/ombran/articles/serverless-install-and-aws-deploy]
 (指定したツイートをDiscordに自動投稿してくれるbotの導入方法【2022年更新】)[https://note.com/kawa0108/n/ndc5aef135519]
-
+(AWS Secrets Managerを使おう！)[https://qiita.com/mm-Genqiita/items/f93285a6058c64b39f23]
 
 ## 構築方法
 
