@@ -35,10 +35,13 @@ discodeで入手した投稿に必要な情報をAWS SecretManagerに登録す�
 ```bash
 git clone https://github.com/kiyomaru/serverless.git
 cd servless/services/aws-billing
+npm install aws-sdk aws-xray-sdk serverless-plugin-tracing
 serverless deploy
 ```
 
 毎日10:00にdiscodeにて特定のチャンネルに、AWS利用料が通知されていることを確認する。
+
+## 通知時刻変更方法
 
 ## 削除方法
 
