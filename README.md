@@ -23,6 +23,8 @@ aws(aws configureによる設定済であること。)
 
 [AWS X-RayをServerless Frameworkで簡単構築・可視化まで](https://acro-engineer.hatenablog.com/entry/2018/07/31/120000)
 
+[https://zenn.dev/wakkunn/articles/be748e71d405d1](https://zenn.dev/wakkunn/articles/be748e71d405d1)
+
 ## 構築方法
 
 ### discrordにてwebhookURLを入手する。
@@ -68,4 +70,30 @@ Lambdaを開き、batch-prod-aws-billing関数のテスト実行を行う。
 ```bash
 cd serverless/services/aws-billing
 serverless remove
+```
+
+## awsアカウントが複数ある際の切り替え方
+
+構築/削除する際に以下のコマンドを入力して使用するawsユーザを明示化する。
+
+合わせて該当アカウントのAWS SecretManagerへの登録も行うこと。
+
+### awsプロファイル作成
+
+```bash
+aws configure --profile <awsプロファイル名>
+```
+
+### awsアカウント切り替え
+
+```bash
+vi services/aws-billing
+
+provider:
+  name: aws
+  stage: prod
+  region: ap-northeast-1
+  profile: default
+
+→profileの値を変更すること。
 ```
