@@ -78,22 +78,11 @@ serverless remove
 
 合わせて該当アカウントのAWS SecretManagerへの登録も行うこと。
 
-### awsプロファイル作成
-
-```bash
-aws configure --profile <awsプロファイル名>
-```
+実行するユーザに合わせて実行ファイルは落とし直すこと。
 
 ### awsアカウント切り替え
 
 ```bash
-vi services/aws-billing
-
-provider:
-  name: aws
-  stage: prod
-  region: ap-northeast-1
-  profile: default
-
-→profileの値を変更すること。
+vi ~/.aws/credentials
+→[default]のアカウントキー、シークレットキーを入れ替える。
 ```
