@@ -22,7 +22,13 @@ discodeにてチャンネル書き込みのためのアクセスキーを発行�
 
 ## 構築方法
 
+discodeにてwebhookURLを入手する。
+
 discodeで入手した投稿に必要な情報をAWS SecretManagerに登録する
+
+キー名:secret_name
+値:前の手順で入手したURL
+名前:secret_name
 
 以下のコマンドを入力して構築する。
 
