@@ -23,8 +23,6 @@ aws(aws configureによる設定済であること。)
 
 [AWS X-RayをServerless Frameworkで簡単構築・可視化まで](https://acro-engineer.hatenablog.com/entry/2018/07/31/120000)
 
-[【AWS】AWS CLIでプロファイルを変更する方法](https://zenn.dev/wakkunn/articles/be748e71d405d1)
-
 ## 構築方法
 
 ### discrordにてwebhookURLを入手する。
@@ -72,17 +70,3 @@ cd serverless/services/aws-billing
 serverless remove
 ```
 
-## awsアカウントが複数ある際の切り替え方
-
-構築/削除する際に以下のコマンドを入力して使用するawsユーザを明示化する。
-
-合わせて該当アカウントのAWS SecretManagerへの登録も行うこと。
-
-実行するユーザに合わせて実行ファイルは落とし直すこと。
-
-### awsアカウント切り替え
-
-```bash
-vi ~/.aws/credentials
-→[default]のアカウントキー、シークレットキーを入れ替える。
-```
