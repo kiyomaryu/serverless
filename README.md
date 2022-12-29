@@ -37,7 +37,6 @@ serverless deploy
 ## 削除方法
 
 ```bash
-git clone https://github.com/naritomo08/serverless.git
 cd servless/services/aws-billing
 serverless remove
 ```
