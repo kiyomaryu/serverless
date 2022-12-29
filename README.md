@@ -11,8 +11,6 @@ servless
 aws(aws configureによる設定済であること。)
 ```
 
-discodeにてチャンネル書き込みのためのアクセスキーを発行していること。
-
 ## 参考URL
 
 [AWS CLIを利用するため必要な初期設定について](https://dev.classmethod.jp/articles/aws-cli_initial_setting/)
@@ -28,6 +26,11 @@ discodeにてチャンネル書き込みのためのアクセスキーを発行�
 ## 構築方法
 
 ### discodeにてwebhookURLを入手する。
+
+以下のサイトを参照してwebhook_URLを入手する。
+名前は適当でよい。
+
+[指定したツイートをDiscordに自動投稿してくれるbotの導入方法【2022年更新】](https://note.com/kawa0108/n/ndc5aef135519)
 
 ### discodeで入手した投稿に必要な情報をAWS SecretManagerに登録する
 
