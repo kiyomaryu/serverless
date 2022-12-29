@@ -1,6 +1,6 @@
 # serverless
 
-AWSの使用料金をdiscodeへ通知するツールになります。
+AWSの使用料金をdiscordへ通知するツールになります。
 
 ## 事前に実施する事項
 
@@ -25,14 +25,14 @@ aws(aws configureによる設定済であること。)
 
 ## 構築方法
 
-### discodeにてwebhookURLを入手する。
+### discrordにてwebhookURLを入手する。
 
 以下のサイトを参照してwebhook_URLを入手する。
 名前は適当でよい。
 
 [指定したツイートをDiscordに自動投稿してくれるbotの導入方法【2022年更新】](https://note.com/kawa0108/n/ndc5aef135519)
 
-### discodeで入手した投稿に必要な情報をAWS SecretManagerに登録する
+### discordで入手した投稿に必要な情報をAWS SecretManagerに登録する
 
 設定内容
 ```bash
@@ -51,7 +51,7 @@ cd serverless/services/aws-billing
 serverless deploy
 ```
 
-毎日10:00にdiscodeにて特定のチャンネルに、AWS利用料が通知されていることを確認する。
+毎日10:00にdiscordにて特定のチャンネルに、AWS利用料が通知されていることを確認する。
 
 ## 通知時刻変更方法
 
@@ -61,6 +61,7 @@ LambdaからCloudWatchイベントを開き、スケジュールがUTC1:00(JPT10
 ## 任意のタイミングで通知する方法
 
 Lambdaを開き、batch-prod-aws-billing関数のテスト実行を行う。
+テストが成功し、投稿されていることを確認する。
 
 ## 削除方法
 
