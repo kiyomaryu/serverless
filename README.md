@@ -23,7 +23,7 @@ aws(aws configureによる設定済であること。)
 
 [AWS X-RayをServerless Frameworkで簡単構築・可視化まで](https://acro-engineer.hatenablog.com/entry/2018/07/31/120000)
 
-[https://zenn.dev/wakkunn/articles/be748e71d405d1](https://zenn.dev/wakkunn/articles/be748e71d405d1)
+[【AWS】AWS CLIでプロファイルを変更する方法](https://zenn.dev/wakkunn/articles/be748e71d405d1)
 
 ## 構築方法
 
