@@ -46,7 +46,7 @@ aws(aws configureによる設定済であること。)
 
 ```bash
 npm install aws-sdk aws-xray-sdk serverless-plugin-tracing
-git clone https://github.com/kiyomaru/serverless.git
+git clone https://github.com/naritomo08/serverless.git
 cd serverless/services/aws-billing
 serverless deploy
 ```
