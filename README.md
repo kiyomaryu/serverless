@@ -17,7 +17,7 @@ aws(aws configureによる設定済であること。)
 
 [Serverless Framework のインストールから AWS へのデプロイまで](https://zenn.dev/ombran/articles/serverless-install-and-aws-deploy)
 
-[指定したツイートをDiscordに自動投稿してくれるbotの導入方法【2022年更新】](https://note.com/kawa0108/n/ndc5aef135519)
+[外部サービスからDiscordにメッセージを送る（Webhook)](https://zenn.dev/lambta/articles/5edbda4ccb1ec6)
 
 [AWS Secrets Managerを使おう！](https://qiita.com/mm-Genqiita/items/f93285a6058c64b39f23)
 
@@ -30,7 +30,7 @@ aws(aws configureによる設定済であること。)
 以下のサイトを参照してwebhook_URLを入手する。
 名前は適当でよい。
 
-[指定したツイートをDiscordに自動投稿してくれるbotの導入方法【2022年更新】](https://note.com/kawa0108/n/ndc5aef135519)
+[外部サービスからDiscordにメッセージを送る（Webhook)](https://zenn.dev/lambta/articles/5edbda4ccb1ec6)
 
 ### discordで入手した投稿に必要な情報をAWS SecretManagerに登録する
 
